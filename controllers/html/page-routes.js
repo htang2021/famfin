@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
 	res.render('login');
 });
 
-// homepage
+// dashboard
 router.get('/dashboard', (req, res) => {
 	res.render('dashboard');
 });

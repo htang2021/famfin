@@ -23,16 +23,25 @@
 
 		</div>
 
+		<!-- Only display this section when user is logged in -->
 		<div class="uk-navbar-right">
 
 				<ul class="uk-navbar-nav">
-						<li><a href="#">About</a></li>
-						<li><a href="#">Partners</a></li>
-						<li><a href="#">Career</a></li>
+						<li>
+							<a href="#">User Management</a>
+							<div class="uk-navbar-dropdown">
+									<ul class="uk-nav uk-navbar-dropdown-nav">
+											<li><a href="#">Add User</a></li>
+											<li><a href="#">Edit User</a></li>
+											<li><a href="#">Remove User</a></li>
+									</ul>
+							</div>
+					</li>
+						<li><a href="#">Logout</a></li>
 				</ul>
 
 		</div>
-
+		<!-- End section-->
 </nav>
 
 {{{body}}}

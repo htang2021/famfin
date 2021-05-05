@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express");
@@ -17,7 +18,7 @@ const sess = {
 
 app.use(session(sess));
 
-app.engine("handlebars", hbs.engine);
+app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
 app.use(express.json());
@@ -28,5 +29,4 @@ app.use(require("./controllers/"));
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log("Now listening"));
-});
 });
