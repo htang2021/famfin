@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Fund extends Model { }
+class Member extends Model { }
 
-Fund.init(
+Member.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,32 +11,32 @@ Fund.init(
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: {
+        first_name: {
+            type: DataTypes.STRING,
+            len: [1]
+        },
+        last_name: {
+            type: DataTypes.STRING,
+            len: [1]
+        },
+        relationship: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        family_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'family',
                 key: 'id'
             }
         },
-        stock_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'stock',
-                key: 'id'
-            }
-        },
-        quantity: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'fund'
+        modelName: 'member'
     }
 );
 
-module.exports = Fund;
+module.exports = Member;
