@@ -1,0 +1,48 @@
+:root {
+	--primary-color: #248d56;
+}
+
+
+/* Start Navbar styles */
+
+.uk-navbar-container {
+	background: #248d56;
+}
+
+.uk-navbar-container h1 {
+	font-size: 2.5rem;
+	padding: 0;
+	margin: 0;
+}
+/* End Navbar Styles */
+
+/* Start Log In Page Styles */
+
+.splash-img {
+	width: 100%;
+	height: 240px;
+	background: url("../img/splash.jpg");
+	background-position: center;
+	background-size: auto;
+}
+
+.intro {
+	transform: translateY(-190px)
+}
+
+/* End Log In Page Styles */
+
+/* Start Footer Styles */
+
+.credits {
+	margin: auto;
+}
+
+footer ul li {
+	float: left;
+	list-style: none;
+	text-align: center;
+	margin: 12px;
+}
+
+/* End Footer Styles */
