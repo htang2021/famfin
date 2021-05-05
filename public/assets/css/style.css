@@ -16,7 +16,7 @@
 }
 /* End Navbar Styles */
 
-/* Log In Page Styles */
+/* Start Log In Page Styles */
 
 .splash-img {
 	width: 100%;
@@ -29,3 +29,20 @@
 .intro {
 	transform: translateY(-190px)
 }
+
+/* End Log In Page Styles */
+
+/* Start Footer Styles */
+
+.credits {
+	margin: auto;
+}
+
+footer ul li {
+	float: left;
+	list-style: none;
+	text-align: center;
+	margin: 12px;
+}
+
+/* End Footer Styles */
