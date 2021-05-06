@@ -10,6 +10,8 @@ export function indices() {
         if (res.ok) {
             res.json().then(function(quote) {
                 // console.log(quote);
+                
+                // Set object to only contain needed key/value pairs
                 let majorIndices = {
                     DJI: Math.round(quote.DJI.values[0].close),
                     IXIC: Math.round(quote.IXIC.values[0].close),
