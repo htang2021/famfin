@@ -1,19 +1,17 @@
-:root {
-	--primary-color: #248d56;
-}
-
 
 /* Start Navbar styles */
 
 .uk-navbar-container {
-	background: #248d56;
+	height: 80px;
 }
 
 .uk-navbar-container h1 {
+	color: white;
 	font-size: 2.5rem;
 	padding: 0;
 	margin: 0;
 }
+
 /* End Navbar Styles */
 
 /* Start Log In Page Styles */
@@ -27,12 +25,23 @@
 }
 
 .intro {
-	transform: translateY(-190px)
+	transform: translateY(-190px);
+	position: absolute;
+	z-index: 3;
 }
 
 /* End Log In Page Styles */
 
 /* Start Footer Styles */
+
+footer {
+	margin: 50px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
 
 .credits {
 	margin: auto;
@@ -42,7 +51,7 @@ footer ul li {
 	float: left;
 	list-style: none;
 	text-align: center;
-	margin: 12px;
+	/* margin: 20px; */
 }
 
 /* End Footer Styles */

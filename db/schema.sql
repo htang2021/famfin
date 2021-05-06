@@ -2,4 +2,3 @@ DROP DATABASE IF EXISTS fam_fin_db;
 
 CREATE DATABASE fam_fin_db;
 
-CREATE TABLE 
