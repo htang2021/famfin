@@ -15,7 +15,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
 </head>
 <body>
-	<nav class="uk-navbar-container" uk-navbar>
+	<nav class="uk-navbar-container" uk-navbar style="background-color: #191919;" >
 
 		<div class="uk-navbar-left">
 			
@@ -23,32 +23,33 @@
 
 		</div>
 
+		<!-- Only display this section when user is logged in -->
+
 		<div class="uk-navbar-right">
 
 				<ul class="uk-navbar-nav">
-						<li><a href="#">About</a></li>
-						<li><a href="#">Partners</a></li>
-						<li><a href="#">Career</a></li>
+						{{#if loggedIn}}
+						<li>
+							<a href="#">User Management</a>
+							<div class="uk-navbar-dropdown">
+									<ul class="uk-nav uk-navbar-dropdown-nav">
+											<li><a href="#">Add User</a></li>
+											<li><a href="#">Edit User</a></li>
+											<li><a href="#">Remove User</a></li>
+									</ul>
+							</div>
+						</li>
+						<li><a href="#">Logout</a></li>
+						{{/if}}
 				</ul>
 
 		</div>
-
+		<!-- End conditional -->
 </nav>
 
 {{{body}}}
 
-<footer>
-	<div class="uk-text-center">
-		<h4>Built with <i class="fas fa-heart"></i> by:</h4>
-		<div class="credits uk-width-1-2">
-			<a href="#" target="_blank">Clayton Goff</a></li>
-			<a href="#" target="_blank">Graham Hall</a></li>
-			<a href="#" target="_blank">Jennifer Nguyen</a></li>
-			<a href="#" target="_blank">Hung Tang</a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
+
 
 </body>
 </html>
