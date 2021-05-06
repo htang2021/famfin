@@ -24,22 +24,22 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    fund_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "fund",
-        key: "id",
-      },
-    },
-    family_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "family",
-        key: "id",
-      },
-    },
+    // fund_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: "fund",
+    //     key: "id",
+    //   },
+    // },
+    // family_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: "family",
+    //     key: "id",
+    //   },
+    // },
     email: {
       type: DataTypes.STRING,
       allowNull: false,

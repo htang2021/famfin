@@ -12,16 +12,31 @@ router.get("/", (req, res) => {
     });
 });
 
+// router.get("/:id", (req, res) => {
+//     User.findOne({
+//         attributes: { exclude: ["password"] },
+//         where: {
+//             id: req.params.id
+//         },
+//         include: [
+//             {
+
+//             }
+//         ]
+//     })
+// })
+
 router.post("/", (req, res) => {
     User.create({
-        username: req.body.username,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
     })
     .then((dbUserData) => {
         req.session.save(() => {
             req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
+            req.session.email = dbUserData.email;
             req.session.loggedIn = true;
 
             res.json(dbUserData);
@@ -69,3 +84,5 @@ router.post("/logout", (req, res) => {
         res.status(404).end();
     }
 });
+
+module.exports = router;
