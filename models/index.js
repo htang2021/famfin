@@ -1,7 +1,5 @@
-const Family = require('./Family');
 const Fund = require('./Fund');
 const Member = require('./Member');
-const Stock = require('./Stock');
 const User = require('./User');
 
 // Family.belongsTo(User, {
@@ -24,8 +22,7 @@ const User = require('./User');
 // // to-Do: Fund belongs User, Member belongs to Family, more? 
 
 module.exports = {
-  Family,
   Fund,
   Member,
-  Stock, User
+  User
 };
