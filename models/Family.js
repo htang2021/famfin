@@ -21,7 +21,7 @@ Family.init(
     member_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'members',
+            model: 'member',
             key: 'id'
         }
     },
