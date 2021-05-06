@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Member = require('../../models');
+const { Member } = require('../../models');
 
 // Delete a family member
 router.delete('/:id', (req, res) => {
