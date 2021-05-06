@@ -26,15 +26,15 @@ async function signupHandler(event) {
 	event.preventDefault();
 	
 	const signupInput = {
-		firstName: document.querySelector("#first-name").value.trim(),
-		lastName: document.querySelector("#last-name").value.trim(),
+		first_name: document.querySelector("#first-name").value.trim(),
+		last_name: document.querySelector("#last-name").value.trim(),
 		email: document.querySelector("#signup-email").value.trim(),
 		password: document.querySelector("#signup-password").value
 	};
 	
 	console.log(signupInput);
 	
-	if (signupInput.firstName && signupInput.lastName && signupInput.email && signupInput.password) {
+	if (signupInput.first_name && signupInput.last_name && signupInput.email && signupInput.password) {
 		const response = await fetch('/api/users', {
 			method: 'post',
 			body: JSON.stringify(signupInput),
@@ -42,7 +42,7 @@ async function signupHandler(event) {
 		});
 
 		if (response.ok) {
-			document.location.replace('/');
+			document.location.replace('/dashboard');
 		} else {
 			alert(response.statusText);
 		}
