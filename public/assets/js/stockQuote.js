@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 
 // converts number to $xxx.yy format in string type
 var formatter = new Intl.NumberFormat('en-US', {
@@ -8,7 +8,7 @@ var formatter = new Intl.NumberFormat('en-US', {
 
 function tickerPrice(ticker) {
 
-    let url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${process.env.API_KEY}`;
+    let url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=Z3IMNRJSEUXUSQM3`;
 
     fetch (url).then(function(res) {
         if (res.ok) {
@@ -25,4 +25,8 @@ function tickerPrice(ticker) {
     });
 }
 
-module.exports = tickerPrice(ticker);
+const GME = tickerPrice('GME');
+
+console.log(GME);
+
+module.exports = tickerPrice;
