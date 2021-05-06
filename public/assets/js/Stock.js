@@ -23,21 +23,31 @@ const presentTicker = function(data) {
     tickerHtml.textContent = indice;
 }
 
-fetch (url).then(function(res) {
-    if (res.ok) {
-        console.log(res);
-        console.log("==============");
-        res.json().then(function(quote) {
-            console.log(quote);
-            console.log("DJI: " + Math.round((quote.DJI.values[0].close)*100)/100);
-            console.log("IXIC: " + quote.IXIC.values[0].close);
-            console.log("GSPC: " + quote.GSPC.values[0].close);
-            console.log("RUT: " + quote.RUT.values[0].close);
-        });
-    } else {
-        alert("Error: " + res.statusText);
-    }
-})
-.catch(function(error) {
-    res.json(error);
-});
+function majorIndices() {
+
+    fetch (url).then(function(res) {
+        if (res.ok) {
+            console.log(res);
+            console.log("==============");
+            res.json().then(function(quote) {
+                console.log(quote);
+                console.log("DJI: " + Math.round(quote.DJI.values[0].close));
+                console.log("DJI-1: " + Math.round(quote.DJI.values[1].close));
+                console.log("IXIC: " + Math.round(quote.IXIC.values[0].close));
+                console.log("GSPC: " + Math.round(quote.GSPC.values[0].close));
+                console.log("RUT: " + Math.round(quote.RUT.values[0].close));
+                return {
+                    "DJI": Math.round(quote.DJI.values[0].close),
+                    "IXIC": Math.round(quote.IXIC.values[0].close),
+                    "GSPC": Math.round(quote.GSPC.values[0].close),
+                    "RUT": Math.round(quote.RUT.values[0].close)
+                }
+            });
+        } else {
+            alert("Error: " + res.statusText);
+        }
+    })
+    .catch(function(error) {
+        res.json(error);
+    });
+}
