@@ -7,7 +7,14 @@ router.get('/', (req, res) => {
 
 // dashboard
 router.get('/dashboard', (req, res) => {
-	res.render('dashboard');
+	// todo:
+	// ask sessions if user is logged in
+	// if uses is logged in, display /dashboard
+		// pull data from database and APIs
+	// else reroute user to /
+	
+	const loggedIn = true;
+	res.render('dashboard', { loggedIn });
 });
 
 module.exports = router;
