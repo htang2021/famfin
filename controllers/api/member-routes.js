@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Member } = require('../../models');
+const { Member, Fund } = require('../../models');
 
 // Delete a family member
 router.delete('/:id', (req, res) => {
@@ -66,6 +66,9 @@ router.get('/:id', (req, res) => {
   Member.findAll({
       where: {
           user_id: req.params.id
+      },
+      include: {
+        model: Fund
       }
   })
       .then(dbMemberData => {

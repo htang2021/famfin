@@ -19,11 +19,13 @@ const userData = [
 const fundData = [
     {
         stock_name: 'JNJ',
-        quantity: '15'
+        quantity: '15',
+        member_id: 1
     },
     {
         stock_name: 'DIS',
-        quantity: '32'
+        quantity: '32',
+        member_id: 2
     },
 ];
 
@@ -43,8 +45,8 @@ const memberData = [
     },
 ];
 const seedUser = () => User.bulkCreate(userData);
-const seedFund = () => Fund.bulkCreate(fundData);
 const seedMember = () => Member.bulkCreate(memberData);
+const seedFund = () => Fund.bulkCreate(fundData);
 
 
 const seedAll = async () => {
@@ -53,11 +55,11 @@ const seedAll = async () => {
     await seedUser();
     console.log('\n----- USERS SEEDED -----\n');
 
-    await seedFund();
-    console.log('\n----- FUNDS SEEDED -----\n');
-
     await seedMember();
     console.log('\n----- MEMBERS SEEDED -----\n');
+    
+    await seedFund();
+    console.log('\n----- FUNDS SEEDED -----\n');
 
     process.exit(0);
 };
