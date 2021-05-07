@@ -36,20 +36,6 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-  Member.create({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    relationship: req.body.relationship,
-    // family_id: req.body.family_id
-  })
-    .then(dbMemberData => res.json(dbMemberData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
 router.put('/:id', (req, res) => {
   Member.update(
     {
