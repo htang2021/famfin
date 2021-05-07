@@ -1,4 +1,4 @@
-
+// require('dotenv').config();
 
 // converts number to $xxx.yy format in string type
 var formatter = new Intl.NumberFormat('en-US', {
@@ -14,6 +14,7 @@ function tickerPrice(ticker) {
         if (res.ok) {
             res.json().then(function(quote) {
                 // returns the quote in USD of string type $xx.yy
+                console.log(formatter.format(quote["Global Quote"]["05. price"]));
                 return formatter.format(quote["Global Quote"]["05. price"]);
             });
         } else {
@@ -27,6 +28,5 @@ function tickerPrice(ticker) {
 
 const GME = tickerPrice('GME');
 
-console.log(GME);
 
-module.exports = tickerPrice;
+// module.exports = tickerPrice;
