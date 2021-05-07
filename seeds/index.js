@@ -32,12 +32,14 @@ const memberData = [
     {
         first_name: 'Clay',
         last_name: 'Coder',
-        relationship: "best friend"
+        relationship: "best friend",
+        user_id: 1
     },
     {
         first_name: 'Kevin',
         last_name: 'Durant',
-        relationship: "former teammate"
+        relationship: "former teammate",
+        user_id: 2
     },
 ];
 const seedUser = () => User.bulkCreate(userData);

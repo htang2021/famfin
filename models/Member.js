@@ -28,7 +28,7 @@ Member.init(
             allowNull: false,
             defaultValue: false
         },
-        family_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',

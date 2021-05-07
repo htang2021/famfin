@@ -65,7 +65,7 @@ router.put('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
   Member.findAll({
       where: {
-          user_id: req.body.user_id
+          user_id: req.params.id
       }
   })
       .then(dbMemberData => {
