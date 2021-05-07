@@ -27,6 +27,27 @@ const fundData = [
         quantity: '32',
         member_id: 2
     },
+    {
+        stock_name: 'DIS',
+        quantity: '1',
+        member_id: 1
+    },
+    {
+        stock_name: 'MSFT',
+        quantity: '1',
+        member_id: 3
+    },
+    {
+        stock_name: 'AAPL',
+        quantity: '1',
+        member_id: 4
+    },
+    {
+        stock_name: 'AMZN',
+        quantity: '1',
+        member_id: 1
+    }
+
 ];
 
 
@@ -43,6 +64,30 @@ const memberData = [
         relationship: "former teammate",
         user_id: 2
     },
+    {
+        first_name: 'Kevin',
+        last_name: 'Costner',
+        relationship: "inspiration",
+        user_id: 1
+    },
+    {
+        first_name: 'Oprah',
+        last_name: 'Winfrey',
+        relationship: "confidant",
+        user_id: 2
+    },
+    {
+        first_name: 'Wilson',
+        last_name: 'Wilsonson',
+        relationship: "volleyball",
+        user_id: 1
+    },
+    {
+        first_name: 'Curtis',
+        last_name: 'Mayfield',
+        relationship: "brother",
+        user_id: 2
+    },
 ];
 const seedUser = () => User.bulkCreate(userData);
 const seedMember = () => Member.bulkCreate(memberData);
@@ -57,7 +102,7 @@ const seedAll = async () => {
 
     await seedMember();
     console.log('\n----- MEMBERS SEEDED -----\n');
-    
+
     await seedFund();
     console.log('\n----- FUNDS SEEDED -----\n');
 
