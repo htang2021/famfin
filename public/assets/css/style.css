@@ -40,6 +40,29 @@
 
 /* End Log In Page Styles */
 
+/* Start Major Indices Styles */
+
+.indices-rowheight {
+	height: 3em;
+}
+
+.indices {
+	font-weight: bold;
+}
+
+.index-points {
+	width: 80px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.delta {
+	width: 60px;
+	text-align: right;
+}
+
+/* End Major Indices Styles */
+
 /* Start Footer Styles */
 
 footer {
