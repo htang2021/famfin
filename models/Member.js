@@ -23,13 +23,18 @@ Member.init(
             type: DataTypes.STRING,
             allowNull: true
         },
-    //     family_id: {
-    //         type: DataTypes.INTEGER,
-    //         references: {
-    //             model: 'family',
-    //             key: 'id'
-    //         }
-    //     },
+        isUser: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        family_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        },
     },
     {
         sequelize,
