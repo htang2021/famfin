@@ -1,6 +1,15 @@
-const marketIndices = require('./public/assets/js/Indices');
-const tickerPrice = require('./public/assets/js/stockQuote');
+const indices = require('./public/assets/js/Indices');
+// const tickerPrice = require('./public/assets/js/stockQuote');
 
-console.log(tickerPrice('SQ'));
+// console.log(tickerPrice('SQ'));
 
-console.log(marketIndices);
+const indiceObj = indices();
+// console.log("After it's passed over: ");
+console.log(indiceObj);
+// console.log(indices);
+async function testObj(obj) {
+    const test = await obj();
+    console.log(test);
+}
+
+testObj(indices);
