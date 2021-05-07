@@ -1,28 +1,26 @@
-function indices() {
+const fetch = require('node-fetch');
+
+require('dotenv').config();
+
+async function indices() {
     // DJI (Dow Jones), IXIC (Nasdaq), GSPC (S&P 500),
     // RUT (Russell 2000), 
     const ticker = 'DJI,IXIC,GSPC,RUT';
 
-    let url = `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=1day&apikey=1d8c39832e794358a6b5c2baec3e692e`;
-    // let url = `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=1day&apikey=${process.env.API_KEY2}`;
+    // let url = `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=1day&apikey=1d8c39832e794358a6b5c2baec3e692e`;
+    let url = `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=1day&apikey=${process.env.API_KEY2}`;
 
-    fetch (url).then(res => {
+    await fetch(url).then(res => {
         if (res.ok) {
-            res.json().then(function(quote) {
-                console.log(quote);
-                
+            res.json().then(quote => {
                 // Set object to only contain needed key/value pairs
                 let majorIndices = {
-                    DJI: Math.round(quote.DJI.values[0].close - quote.DJI.values[1].close),
-                    IXIC: Math.round(quote.IXIC.values[0].close - quote.IXIC.values[1].close),
-                    GSPC: Math.round(quote.GSPC.values[0].close - quote.GSPC.values[1].close),
-                    RUT: Math.round(quote.RUT.values[0].close - quote.RUT.values[1].close)
+                    DJI: Math.round(quote.DJI.values[0].close*100)/100,
+                    IXIC: Math.round(quote.IXIC.values[0].close*100)/100,
+                    GSPC: Math.round(quote.GSPC.values[0].close*100)/100,
+                    RUT: Math.round(quote.RUT.values[0].close*100)/100
                 };
-                
                 console.log(majorIndices);
-                
-
-                
                 return majorIndices;
             })
             .then(majorIndices => {
@@ -43,4 +41,4 @@ function indices() {
     });
 }
 
-indices();
+module.exports = indices;
