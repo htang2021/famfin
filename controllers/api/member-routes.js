@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Member } = require('../../models');
+const { Member, Fund } = require('../../models');
 
 // Delete a family member
 router.delete('/:id', (req, res) => {
@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     relationship: req.body.relationship,
-    // family_id: req.body.family_id
+    user_id: req.body.user_id
   })
     .then(dbMemberData => res.json(dbMemberData))
     .catch(err => {
@@ -41,8 +41,7 @@ router.put('/:id', (req, res) => {
     {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      relationship: req.body.relationship,
-      // family_id: req.body.family_id
+      relationship: req.body.relationship
     },
     {
       where: {
@@ -61,6 +60,28 @@ router.put('/:id', (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+router.get('/:id', (req, res) => {
+  Member.findAll({
+      where: {
+          user_id: req.params.id
+      },
+      include: {
+        model: Fund
+      }
+  })
+      .then(dbMemberData => {
+          if (!dbMemberData) {
+              res.status(404).json({ message: 'No such family member.' });
+              return;
+          }
+          res.json(dbMemberData);
+      })
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+      });
 });
 
 module.exports = router;

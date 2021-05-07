@@ -11,13 +11,13 @@ Fund.init(
             primaryKey: true,
             autoIncrement: true
         },
-        // user_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: 'user',
-        //         key: 'id'
-        //     }
-        // },
+        member_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'member',
+                key: 'id'
+            }
+        },
         stock_name: {
             type: DataTypes.STRING,
             allowNull: true,

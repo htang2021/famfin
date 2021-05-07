@@ -2,6 +2,13 @@ const Fund = require('./Fund');
 const Member = require('./Member');
 const User = require('./User');
 
+Fund.belongsTo(Member, {
+  foreignKey: 'member_id',
+  onDelete: 'SET NULL'
+});
+Member.hasMany(Fund, {
+  foreignKey: 'member_id'
+});
 // Family.belongsTo(User, {
 //   foreignKey: 'user_id',
 //   // onDelete: 'SET NULL'
