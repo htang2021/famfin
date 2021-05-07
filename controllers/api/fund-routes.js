@@ -6,6 +6,7 @@ router.post('/', (req, res) => {
     Fund.create({
         stock_name: req.body.stock_name,
         quantity: req.body.quantity,
+        // initial_cost: req.body.initial_cost,
         // user_id: req.body.user_id
     })
         .then(dbFundData => res.json(dbFundData))
@@ -14,6 +15,11 @@ router.post('/', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+// show all and or show one by initial cost 
+// find one on stock id initial cost
+// in front end js, get the new cost of this stock find one + cost of new stock 
+// req.body.initial_cost = previous line
 
 router.put('/:id', (req, res) => {
     Fund.update(
