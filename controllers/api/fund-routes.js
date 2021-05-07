@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Fund } = require('../../models');
+const withAuth = require("../../utils/auth");
 
 router.post('/', (req, res) => {
     Fund.create({
@@ -56,6 +57,5 @@ router.put('/:id', (req, res) => {
 //             res.status(500).json(err);
 //         });
 // });
-
 
 module.exports = router;
