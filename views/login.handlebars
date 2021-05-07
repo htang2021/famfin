@@ -28,17 +28,32 @@
 			<div class="uk-card uk-card-default uk-card-body">
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus vitae tempore nesciunt voluptas earum, aliquid sed pariatur sapiente doloremque aperiam architecto voluptatum nulla est, praesentium omnis voluptatibus cum rem. Fugit?</p>
 				<ul>
-					{{#each majorIndices as |index|}}
-
-					<li>{{index}}</li>
-					{{!-- <li>Dow Jones: {{dow}}</li>
-					<li>Nasdaq</li>
-					<li>Russell 2000</li>
-					<li>Bitcoin</li>
-					<li>Dogecoin</li>
-					<li>10-years Treasuries</li>
-					<li>Fed Interest Rate</li> --}}
-					{{/each}}
+					<table class="major-indices">
+						<tr class="indices-rowheight">
+							<td class="indices">Dow Jones</td>
+							<td class="index-points">{{DJI}}</td>
+							<td class="delta">({{DJIDelta}}%)</td>
+						</tr>
+						<tr class="indices-rowheight">
+							<td class="indices">Nasdaq</td>
+							<td class="index-points">{{IXIC}}</td>
+							<td class="delta">({{IXICDelta}}%)</td>
+						</tr>
+						<tr class="indices-rowheight">
+							<td class="indices">S&ampP 500</td>
+							<td class="index-points">{{GSPC}}</td>
+							<td class="delta">({{SPDelta}}%)</td>
+						</tr>
+						<tr class="indices-rowheight">
+							<td class="indices">Russell 2000</td>
+							<td class="index-points">{{RUT}}</td>
+							<td class="delta">({{RUTDelta}}%)</td>
+						</tr>
+					</table>
+					{{!-- <li>Dow Jones: &emsp;<span class="idx-points">{{DJI}}</span></li>
+					<li>Nasdaq: &emsp;<span class="idx-points">{{IXIC}}</span></li>
+					<li>S&ampP 500: <span class="idx-points">{{GSPC}}</span></li>
+					<li>Russell 2000: <span class="idx-points">{{RUT}}</span></li> --}}
 				</ul>
 			</div>
 		</div>

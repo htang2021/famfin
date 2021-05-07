@@ -13,22 +13,27 @@ router.get('/', async (req, res) => {
 		await fetch(url).then(data => {
 			if (data.ok) {
 				data.json().then(quote => {
+					// Calculate % increase or decrease between today and yesterday
+					let djiDelta = Math.round(((quote.DJI.values[0].close - quote.DJI.values[1].close)/quote.DJI.values[1].close)*100*100)/100;
+					let nasdaqDelta = Math.round(((quote.IXIC.values[0].close - quote.IXIC.values[1].close)/quote.IXIC.values[1].close)*100*100)/100;
+					let spDelta = Math.round(((quote.GSPC.values[0].close - quote.GSPC.values[1].close)/quote.GSPC.values[1].close)*100*100)/100;
+					let russellDelta = Math.round(((quote.RUT.values[0].close - quote.RUT.values[1].close)/quote.RUT.values[1].close)*100*100)/100;
+					
 					// Set object to only contain needed key/value pairs
 					let majorIndices = {
 						DJI: Math.round(quote.DJI.values[0].close*100)/100,
+						DJIDelta: djiDelta,
 						IXIC: Math.round(quote.IXIC.values[0].close*100)/100,
+						IXICDelta: nasdaqDelta,
 						GSPC: Math.round(quote.GSPC.values[0].close*100)/100,
-						RUT: Math.round(quote.RUT.values[0].close*100)/100
+						SPDelta: spDelta,
+						RUT: Math.round(quote.RUT.values[0].close*100)/100,
+						RUTDelta: russellDelta
 					};
-					// console.log(majorIndices);
 					return majorIndices;
 				})
 				.then(majorIndices => {
-					let dow = majorIndices.DJI;
-					let nasdaq = majorIndices.IXIC;
-					let sp500 = majorIndices.GSPC;
-					let russell2k = majorIndices.RUT;
-					res.render('login', { majorIndices });
+					res.render('login', majorIndices);
 				});
 			} else {
 				alert("Error: " + data.statusText);
