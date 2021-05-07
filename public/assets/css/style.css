@@ -30,6 +30,14 @@
 	z-index: 3;
 }
 
+.index-up {
+	color: green;
+}
+
+.index-down {
+	color: red;
+}
+
 /* End Log In Page Styles */
 
 /* Start Footer Styles */
