@@ -8,6 +8,12 @@ require('dotenv').config();
 
 // homepage
 router.get('/', async (req, res) => {
+	// if session exists, redirect to dashboard
+	if (req.session.loggedIn) {
+		res.redirect("/dashboard");
+		return;
+	}
+	
 	// DJI (Dow Jones), IXIC (Nasdaq), GSPC (S&P 500),
 	// RUT (Russell 2000), 
 	const ticker = 'DJI,IXIC,GSPC,RUT';
@@ -48,7 +54,14 @@ router.get('/', async (req, res) => {
 });
 
 // dashboard
-router.get("/dashboard", withAuth, (req, res) => {
+router.get("/dashboard", (req, res) => {
+	
+	// if no session exists, redirect to login
+	if (!req.session.loggedIn) {
+		res.redirect("/");
+		return;
+	}
+	
   // todo:
   // ask sessions if user is logged in
   // if uses is logged in, display /dashboard
@@ -67,17 +80,18 @@ router.get("/dashboard", withAuth, (req, res) => {
   //       console.log(err);
   //       res.status(500).json(err);
   //     });
-  const loggedIn = true;
+	
+	const loggedIn = req.session.loggedIn;
   res.render("dashboard", { loggedIn });
 });
 
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  }
-
-  res.render("login");
-});
+// router.get("/login", (req, res) => {
+//   if (req.session.loggedIn) {
+//     res.redirect("/");
+//     return;
+//   }
+// 
+//   res.render("login");
+// });
 
 module.exports = router;
