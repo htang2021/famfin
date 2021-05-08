@@ -6,7 +6,7 @@ router.post('/', (req, res) => {
         stock_name: req.body.stock_name,
         quantity: req.body.quantity,
         initial_cost: req.body.initial_cost,
-        user_id: req.body.user_id
+        member_id: req.body.member_id
     })
         .then(dbFundData => res.json(dbFundData))
         .catch(err => {
