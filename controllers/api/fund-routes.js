@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Fund } = require('../../models');
 const withAuth = require("../../utils/auth");
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Fund.create({
         stock_name: req.body.stock_name,
         quantity: req.body.quantity,
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 // in front end js, get the new cost of this stock find one + cost of new stock 
 // req.body.initial_cost = previous line
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Fund.update(
         {
             stock_quantity: req.body.stock_quantity,
@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     Fund.findAll({
         where: {
             user_id: req.body.user_id

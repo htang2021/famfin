@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
+// /api/member/family
 router.get('/family', (req, res) => {
   Member.findAll({
       where: {
@@ -78,6 +78,7 @@ router.get('/family', (req, res) => {
               return;
           }
           res.json(dbMemberData);
+          console.log(dbMemberData);
       })
       .catch(err => {
           console.log(err);
@@ -85,5 +86,28 @@ router.get('/family', (req, res) => {
       });
 });
 
+// /api/member/test/1
+router.get('/test/:id', (req, res) => {
+  Member.findAll({
+      where: {
+          user_id: req.params.id
+      },
+      include: {
+        model: Fund
+      }
+  })
+      .then(dbMemberData => {
+          if (!dbMemberData) {
+              res.status(404).json({ message: 'No such family member.' });
+              return;
+          }
+          res.json(dbMemberData);
+          console.log(dbMemberData);
+      })
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
 // findone member
 module.exports = router;
