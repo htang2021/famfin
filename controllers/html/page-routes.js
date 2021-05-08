@@ -1,4 +1,4 @@
-const { Fund } = require("../../models");
+const { Fund, Member } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 const router = require("express").Router();
@@ -62,27 +62,30 @@ router.get("/dashboard", (req, res) => {
 		return;
 	}
 	
-  // todo:
-  // ask sessions if user is logged in
-  // if uses is logged in, display /dashboard
-  // pull data from database and APIs
-  // else reroute user to /
-
-  //   Fund.findAll({
-  //     attributes: [],
-  //     include: [],
-  //   })
-  //     .then((dbFundData) => {
-  //       const funds = dbFundData.map((fund) => fund.get({ plain: true }));
-  //       res.render("main", { funds, loggedIn: true });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       res.status(500).json(err);
-  //     });
-	
 	const loggedIn = req.session.loggedIn;
-  res.render("dashboard", { loggedIn });
+	
+  Member.findAll({
+		where: {
+				user_id: req.session.user_id
+		},
+		include: {
+			model: Fund
+		}
+})
+		.then(dbMemberData => {
+				if (!dbMemberData) {
+						res.status(404).json({ message: 'No such family member.' });
+						return;
+				}
+				console.log(dbMemberData);
+				res.render("dashboard", { loggedIn, dbMemberData });
+		})
+		.catch(err => {
+				console.log(err);
+				res.status(500).json(err);
+		});
+	
+
 });
 
 // router.get("/login", (req, res) => {
