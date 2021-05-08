@@ -23,7 +23,7 @@ Member.init(
             type: DataTypes.STRING,
             allowNull: true
         },
-        isUser: {
+        is_user: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false

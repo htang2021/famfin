@@ -6,9 +6,7 @@ async function createMember(event) {
 		first_name: document.querySelector('#create-first-name').value.trim(),
 		last_name: document.querySelector('#create-last-name').value.trim(),
 		relationship: document.querySelector('#create-relationship').value,
-		is_user: false,
-		user_id: 1
-		// change line 10 to get user id for logged in user
+		is_user: false
 	};
 	
 	console.log(createInput);

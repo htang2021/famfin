@@ -27,6 +27,7 @@ router.post('/', (req, res) => {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     relationship: req.body.relationship,
+    is_user: req.body.is_user,
     user_id: req.session.user_id
   })
     .then(dbMemberData => res.json(dbMemberData))
