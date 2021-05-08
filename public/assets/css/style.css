@@ -63,6 +63,16 @@
 
 /* End Major Indices Styles */
 
+/* Start Dashboard Styles */
+
+.delete {
+	color: #D33C3C;
+}
+
+.delete:hover {
+	color: #ff0000;
+}
+
 /* Start Footer Styles */
 
 footer {
