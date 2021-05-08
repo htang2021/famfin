@@ -63,10 +63,10 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/family', (req, res) => {
   Member.findAll({
       where: {
-          user_id: req.params.id
+          user_id: req.session.user_id
       },
       include: {
         model: Fund
@@ -85,4 +85,5 @@ router.get('/:id', (req, res) => {
       });
 });
 
+// findone member
 module.exports = router;
