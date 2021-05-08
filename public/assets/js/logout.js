@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 
 async function logout() {
     const response = await fetch("/api/users/logout", {
@@ -12,4 +12,4 @@ async function logout() {
     }
 }
 
-document.querySelector("#logout").addEventListener("click", logout);
+// document.querySelector("#logout").addEventListener("click", logout);
