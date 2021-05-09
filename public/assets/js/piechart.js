@@ -1,25 +1,33 @@
-const famdata = fetch("/api/member/family")
+fetch("/api/member/family")
   .then((response) => response.json())
-  .then((data) => console.log(data));
+  .then((data) => {
+    console.log(data);
 
-const labels = ["January", "February", "March", "April", "May", "June"];
+    const labels = [];
 
-const data = {
-  labels: labels,
-  datasets: [
-    {
-      label: "My First dataset",
-      backgroundColor: "rgb(255, 99, 132)",
-      borderColor: "rgb(255, 99, 132)",
-      data: [0, 10, 5, 2, 20, 30, 45],
-    },
-  ],
-};
+    for (var i = 0; i < data.length; i++) {
+      labels.push(data[i].first_name + " " + data[i].last_name);
+    }
 
-const config = {
-  type: "pie",
-  data,
-  options: {},
-};
+    console.log(labels);
+    const element = document.getElementById("myChart");
+    // const config = {
+    //   type: "pie",
+    //   chartData,
+    //   options: {},
+    // };
+    const chartData = new Chart(element, {
+      type: "pie",
+      labels: labels,
+      datasets: [
+        {
+          label: "My First dataset",
+          backgroundColor: "rgb(255, 99, 132)",
+          borderColor: "rgb(255, 99, 132)",
+          data: [30, 45],
+        },
+      ],
+    });
 
-var myChart = new Chart(document.getElementById("myChart"), config);
+    // let myChart = new Chart(document.getElementById("myChart"), config);
+  });
