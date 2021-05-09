@@ -1,0 +1,98 @@
+
+/* Start Navbar styles */
+
+.uk-navbar-container {
+	height: 80px;
+}
+
+.uk-navbar-container h1 {
+	color: white;
+	font-size: 2.5rem;
+	padding: 0;
+	margin: 0;
+}
+
+/* End Navbar Styles */
+
+/* Start Log In Page Styles */
+
+.splash-img {
+	width: 100%;
+	height: 240px;
+	background: url("../img/splash.jpg");
+	background-position: center;
+	background-size: auto;
+}
+
+.intro {
+	transform: translateY(-190px);
+	position: absolute;
+	z-index: 3;
+}
+
+.index-up {
+	color: green;
+}
+
+.index-down {
+	color: red;
+}
+
+/* End Log In Page Styles */
+
+/* Start Major Indices Styles */
+
+.indices-rowheight {
+	height: 3em;
+}
+
+.indices {
+	font-weight: bold;
+}
+
+.index-points {
+	width: 80px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.delta {
+	width: 60px;
+	text-align: right;
+}
+
+/* End Major Indices Styles */
+
+/* Start Dashboard Styles */
+
+.delete {
+	color: #D33C3C;
+}
+
+.delete:hover {
+	color: #ff0000;
+}
+
+/* Start Footer Styles */
+
+footer {
+	margin: 50px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.credits {
+	margin: auto;
+}
+
+footer ul li {
+	float: left;
+	list-style: none;
+	text-align: center;
+	/* margin: 20px; */
+}
+
+/* End Footer Styles */
