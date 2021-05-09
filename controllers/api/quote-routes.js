@@ -3,11 +3,11 @@ const fetch = require('node-fetch');
 
 require('dotenv').config();
 
-// converts number to $xxx.yy format in string type
-const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
+// converts number to $xxx.yy format in string type (not used - to be removed once finalized)
+// const formatter = new Intl.NumberFormat('en-US', {
+//     style: 'currency',
+//     currency: 'USD',
+//   });
 
 // async function tickerPrice(ticker) {
 
@@ -28,7 +28,8 @@ router.get('/:ticker', async (req, res) => {
         if (response.ok) {
             response.json().then(function(quote) {
                 // returns the quote in USD of string type $xx.yy
-                let priceQuote = formatter.format(quote["Global Quote"]["05. price"]);
+                console.log(quote["Global Quote"]["05. price"]*100/100);
+                let priceQuote = quote["Global Quote"]["05. price"]*100/100;
                 quoteRes.quote = priceQuote;
                 console.log(quoteRes);
                 res.json(quoteRes);
