@@ -22,7 +22,7 @@ const buyStock = async (event) => {
 	
 	const buyInput = {
 		stock_name: document.querySelector('#stock').value.trim(),
-		quantity: document.querySelector('#quantity').value,
+		quantity: parseInt(document.querySelector('#quantity').value),
 		initial_cost: initialCost.quote * document.querySelector('#quantity').value,
 		member_id: document.querySelector('#member-choice').value,
 	};
