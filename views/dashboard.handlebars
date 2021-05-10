@@ -1,25 +1,28 @@
 
-<div class="uk-container">
+<div class="uk-container uk-padding">
 	
 
 	
-	<div class="uk-card uk-card-default uk-card-body">
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2">
 		<form id="buy-stock" class="uk-grid-small" uk-grid>
 			<div class="uk-width-1-4@s">
-					<input id="stock"  class="uk-input" type="text" placeholder="GME">
+				<label for="stock">Stock Symbol</label>
+				<input id="stock"  class="uk-input" type="text">
 			</div>
 			<div class="uk-width-1-4@s">
-					<input id="quantity" class="uk-input" type="number" placeholder="10">
+				<label for="quantity">Quantity</label>
+				<input id="quantity" class="uk-input" type="number" min="1" value="1">
 			</div>
 			<div class="uk-width-1-4@s">
-						<select id="member-choice" class="uk-select">
-								{{#each dbMemberData as |member|}}
-								<option value="{{member.dataValues.id}}">{{member.dataValues.first_name}} {{member.dataValues.last_name}}</option>
-								{{/each}}
-						</select>
+				<label for="member-choice">Who's buying?</label>
+				<select id="member-choice" class="uk-select">
+					{{#each dbMemberData as |member|}}
+					<option value="{{member.dataValues.id}}">{{member.dataValues.first_name}} {{member.dataValues.last_name}}</option>
+					{{/each}}
+				</select>
 			</div>
 			<div class="uk-width-1-4@s">
-					<button class="uk-button uk-button-primary" type="submit">Buy</button>
+				<button class="uk-button uk-button-primary" type="submit">Buy</button>
 			</div>
 		</form>
 	</div>
@@ -99,5 +102,5 @@
 
 <!-- End Modals -->
 
-<script src="./assets/js/dashboard.js"></script>
-<script src="./assets/js/stockQuote.js"></script>
+<script src="./assets/js/members.js"></script>
+<script src="./assets/js/stocks.js"></script>
