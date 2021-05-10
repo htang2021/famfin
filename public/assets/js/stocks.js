@@ -15,7 +15,10 @@ const buyStock = async (event) => {
 	const response1 = await fetch(`/api/quote/${document.querySelector('#stock').value.trim()}`);
 	const initialCost = await response1.json();
 	
-
+	if (!initialCost.quote) {
+		alert("This is not a stock");
+		return;
+	}
 	
 	const buyInput = {
 		stock_name: document.querySelector('#stock').value.trim(),
