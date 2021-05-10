@@ -63,6 +63,12 @@
 
 /* End Major Indices Styles */
 
+/* Pie chart styles */
+.piechart {
+	height: 500px;
+	width: 500px;
+}
+
 /* Start Dashboard Styles */
 
 .delete {
