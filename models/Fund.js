@@ -25,6 +25,10 @@ Fund.init(
         quantity: {
             type: DataTypes.INTEGER,
             allowNull: true,
+        },
+        initial_cost: {
+            type: DataTypes.DECIMAL (20, 2),
+            allowNull: true
         }
     },
     {
