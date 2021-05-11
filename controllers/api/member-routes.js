@@ -86,7 +86,7 @@ router.get('/family', (req, res) => {
 });
 
 // findone member
-router.post('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Member.findOne({
     where: {
       id: req.params.id
