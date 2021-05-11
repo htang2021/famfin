@@ -1,22 +1,12 @@
-const getCurrentPrice = async (ticker) => {
-	await fetch(`/api/quote/${ticker}`)
-	.then(response => response.json())
-	.then(data => {
-		return data;	
-	});
-}
-
-
+// search for a stock and add it to the database
 const buyStock = async (event) => {
 	event.preventDefault();
-	
-	// const initialCost = await getCurrentPrice(document.querySelector('#stock').value.trim());
-	
+		
 	const response1 = await fetch(`/api/quote/${document.querySelector('#stock').value.trim()}`);
 	const initialCost = await response1.json();
 	
 	if (!initialCost.quote) {
-		alert("This is not a stock");
+		UIkit.notification({message: 'Stock not found', status: 'danger'});
 		return;
 	}
 	
@@ -27,7 +17,6 @@ const buyStock = async (event) => {
 		member_id: document.querySelector('#member-choice').value,
 	};
 	
-
 	console.log(buyInput);
 	
 	if (buyInput.stock_name && buyInput.quantity) {
@@ -40,12 +29,18 @@ const buyStock = async (event) => {
 		});
 
 		if (response.ok) {
-			// document.location.replace('/dashboard');
+			document.location.replace('/dashboard');
 		} else {
-			alert(response.statusText);
+			UIkit.notification({message: response.statusText, status: 'danger'});
 		}
 	}
 	
 }
 
+
+
+
+
+// Event Listeners
 document.querySelector('#buy-stock').addEventListener('submit', buyStock);
+
