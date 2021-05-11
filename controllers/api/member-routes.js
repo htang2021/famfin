@@ -70,7 +70,7 @@ router.get('/family', (req, res) => {
       },
       include: {
         model: Fund
-      }
+      },
   })
       .then(dbMemberData => {
           if (!dbMemberData) {
