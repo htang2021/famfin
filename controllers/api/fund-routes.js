@@ -120,4 +120,23 @@ router.get('/stock/:id', (req, res) => {
         });
 });
 
+router.get('/ind/:id', (req, res) => {
+    Fund.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbMemberData => {
+        if (!dbMemberData) {
+          res.status(404).json({ message: 'No such stock found.' });
+          return;
+        }
+        res.json(dbMemberData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+  
 module.exports = router;
