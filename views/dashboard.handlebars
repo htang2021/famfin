@@ -3,10 +3,10 @@
 	
 	<div class="uk-grid-divider" uk-grid>
 		
-		<div class="uk-width-1-2">
+		<div class="uk-width-1-2@m">
 			<form id="buy-stock" class="uk-grid-small" uk-grid>
 				<div class="uk-width-1-4@s">
-					<label for="stock">Stock Symbol</label>
+					<label for="stock">Stock</label>
 					<input id="stock"  class="uk-input" type="text" required>
 				</div>
 				<div class="uk-width-1-4@s">
@@ -27,16 +27,22 @@
 			</form>
 		</div>
 		
-		<div class="uk-width-1-2">
+		<div class="uk-width-1-2@m">
 			<form id="sell-stock" class="uk-grid-small" uk-grid>
-				<div class="uk-width-3-4@s">
+				<div class="uk-width-1-2@s">
 					<label for="sell-member-choice">Member</label>
-					<select id="sell-member-choice" class="uk-select">
+					<select id="sell-member-choice" class="uk-select" onchange="getMemberStocks()">
 						{{#each dbMemberData as |member|}}
 						<option value="{{member.dataValues.id}}">
-							{{member.dataValues.first_name}} {{member.dataValues.last_name}} - Stock - 1
+							{{member.dataValues.first_name}} {{member.dataValues.last_name}}
 						</option>
 						{{/each}}
+					</select>
+				</div>
+				<div class="uk-width-1-4@s">
+					<label for="sell-stock-choice">Stock</label>
+					<select id="sell-stock-choice" class="uk-select">
+	
 					</select>
 				</div>
 				<div class="uk-width-1-4@s">
