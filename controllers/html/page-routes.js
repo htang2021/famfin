@@ -56,7 +56,7 @@ router.get('/', (req, res) => {
 });
 
 // dashboard
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", withAuth, (req, res) => {
 	
 	const pageTitle = 'Dashboard'
 
