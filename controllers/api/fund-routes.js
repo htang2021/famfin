@@ -120,4 +120,45 @@ router.get('/stock/:id', (req, res) => {
         });
 });
 
+router.get('/ind/:id', (req, res) => {
+    Fund.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbFundData => {
+        if (!dbFundData) {
+          res.status(404).json({ message: 'No such stock found.' });
+          return;
+        }
+        res.json(dbFundData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+  // delete a stock 
+  router.delete('/:id', (req, res) => {
+    Fund.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbFundData => {
+        if (!dbFundData) {
+          res.status(404).json({ message: "I'm sorry, I don't find that stock." });
+          return;
+        }
+        res.json(dbFundData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+  
+
+  
 module.exports = router;
