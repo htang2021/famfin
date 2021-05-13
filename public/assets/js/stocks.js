@@ -97,8 +97,12 @@ const sellStock = async (event) => {
 	).then(async function() {
 		// check to see if quantity input is greater than, equal to, or less than the available quantity
 		if (sellInput.quantity === stock[0].quantity) {
-			// compare total value stored in database with new total value and display profit/loss
-			// delete stock from fund route
+			response4 = await fetch(`/api/fund/${document.querySelector('#sell-stock-choice').value}`, {
+				method: 'delete',
+				headers: {
+					'Content-Type':'application/json',
+				}
+			});
 		} else {
 			
 			// compare total value stored in database with new total value and display profit/loss
@@ -117,6 +121,7 @@ const sellStock = async (event) => {
 			});
 
 		}
+		document.location.replace('/dashboard');
 	}, function () {
 		console.log('Rejected.')
 	});
