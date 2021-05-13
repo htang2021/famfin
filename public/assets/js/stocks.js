@@ -1,12 +1,25 @@
 const pluralizeShare = quantity => {
-	let sharePlural;
+	let output;
 	if (quantity > 1) {
-		sharePlural = 'shares';
+		output = 'shares';
 	} else {
-		sharePlural = 'share';
+		output = 'share';
 	}
-	return sharePlural;
-}
+	return output;
+};
+
+// figure out if there's a loss or a gain
+const lossOrGain = (newTotal, oldTotal, sellQuantity, quantity) => {
+	let output;
+	if (newTotal / sellQuantity > oldTotal / quantity) {
+		const gain = newTotal - (sellQuantity * (oldTotal / quantity));
+		output = `gain $${gain.toFixed(2)}`;
+	} else if (newTotal / sellQuantity < oldTotal / quantity) {
+		const loss = (sellQuantity * (oldTotal / quantity)) - newTotal
+		output = `lose $${loss.toFixed(2)}`;
+	}
+	return output;
+};
 
 
 // search for a stock and add it to the database
@@ -73,21 +86,14 @@ const sellStock = async (event) => {
 		quantity: parseInt(document.querySelector('#sell-quantity').value),
 		total_price: totalPrice.quote * parseInt(document.querySelector('#sell-quantity').value)
 	};
-	
-	let loseOrGain;
-	if (sellInput.total_price > stock[0].initial_cost) {
-		loseOrGain = `gain $${sellInput.total_price - stock[0].initial_cost}`;
-	} else if (sellInput.total_price < stock[0].initial_cost) {
-		loseOrGain = `lose $${stock[0].initial_cost - sellInput.total_price}`;
-	}
-	
+		
 	if (sellInput.quantity > stock[0].quantity) {
 		UIkit.modal.alert("You can't sell more stock than you own!");
 		return;
 	}
-	
+
 	UIkit.modal.confirm(
-		`Do you want to sell ${sellInput.quantity} ${pluralizeShare(sellInput.quantity)} of ${stock[0].stock_name}, and ${loseOrGain}?`
+		`Do you want to sell ${sellInput.quantity} ${pluralizeShare(sellInput.quantity)} of ${stock[0].stock_name}, and ${lossOrGain(sellInput.total_price, stock[0].initial_cost, sellInput.quantity, stock[0].quantity)}?`
 	).then(async function() {
 		// check to see if quantity input is greater than, equal to, or less than the available quantity
 		if (sellInput.quantity === stock[0].quantity) {
