@@ -1,3 +1,14 @@
+const pluralizeShare = quantity => {
+	let sharePlural;
+	if (quantity > 1) {
+		sharePlural = 'shares';
+	} else {
+		sharePlural = 'share';
+	}
+	return sharePlural;
+}
+
+
 // search for a stock and add it to the database
 const buyStock = async (event) => {
 	event.preventDefault();
@@ -8,7 +19,9 @@ const buyStock = async (event) => {
 	const initialCost = await response.json();
 
 	if (!initialCost.quote) {
-		UIkit.notification({ message: 'Stock not found', status: 'danger' });
+		UIkit.modal.alert(
+			`No stock found with the ticker ${document.querySelector('#stock').value.trim().toUpperCase()}. Try again!`
+		);
 		return;
 	}
 
@@ -18,22 +31,29 @@ const buyStock = async (event) => {
 		initial_cost: initialCost.quote * document.querySelector('#quantity').value,
 		member_id: document.querySelector('#member-choice').value,
 	};
-
-	console.log(buyInput);
-
-	if (buyInput.stock_name && buyInput.quantity) {
-		const response = await fetch('/api/fund', {
-			method: 'post',
-			body: JSON.stringify(buyInput),
-			headers: { 'Content-Type': 'application/json' },
-		});
-
-		if (response.ok) {
-			document.location.replace('/dashboard');
-		} else {
-			UIkit.notification({ message: response.statusText, status: 'danger' });
+	
+	UIkit.modal.confirm(
+		`Do you really want to purchase ${buyInput.quantity} ${pluralizeShare(buyInput.quantity)} of ${buyInput.stock_name} at $${buyInput.initial_cost}?`
+	)
+	.then(async function() {
+		if (buyInput.stock_name && buyInput.quantity) {
+			const response = await fetch('/api/fund', {
+				method: 'post',
+				body: JSON.stringify(buyInput),
+				headers: { 'Content-Type': 'application/json' },
+			});
+	
+			if (response.ok) {
+				document.location.replace('/dashboard');
+			} else {
+				UIkit.notification({ message: response.statusText, status: 'danger' });
+			}
 		}
-	}
+	}, function() {
+		console.log('Rejected');
+	});
+
+	
 };
 
 // calculate new value and sell stock
@@ -44,13 +64,9 @@ const sellStock = async (event) => {
 	const response1 = await fetch(`/api/fund/stock/${document.querySelector('#sell-stock-choice').value}`)
 	const stock = await response1.json()
 	
-	// console.log(stock);
-	
 	// query API for current stock info
 	const response2 = await fetch(`/api/quote/${stock[0].stock_name}`);
 	const totalPrice = await response2.json();
-	
-	// console.log(totalPrice.quote);
 
 	// save form values to an object
 	const sellInput = {
@@ -58,35 +74,48 @@ const sellStock = async (event) => {
 		total_price: totalPrice.quote * parseInt(document.querySelector('#sell-quantity').value)
 	};
 	
-	console.log(sellInput);
-	
-	// check to see if quantity input is greater than, equal to, or less than the available quantity
-	if (sellInput.quantity === stock[0].quantity) {
-		// compare total value stored in database with new total value and display profit/loss
-		// delete stock from fund route
-	} else if (sellInput.quantity > stock[0].quantity) {
-		UIkit.notification({ message: "You can't sell more stock than you own!", status: 'danger' });
-	} else {
-		
-		// compare total value stored in database with new total value and display profit/loss
-		
-		// create object with new values to pass into stock table via put request
-		const sellRequest = {
-			quantity: stock[0].quantity - sellInput.quantity,
-			initial_cost: stock[0].initial_cost - sellInput.total_price
-		}
-
-		console.log(sellRequest);
-		
-		// put new data in stock table by id
-		const response3 = await fetch(`/api/fund/${document.querySelector('#sell-stock-choice').value}`, {
-			method: 'put',
-			body: JSON.stringify(sellRequest),
-			headers: { 'Content-Type': 'application/json' },
-		});
-		console.log(response3);
-		
+	let loseOrGain;
+	if (sellInput.total_price > stock[0].initial_cost) {
+		loseOrGain = `gain $${sellInput.total_price - stock[0].initial_cost}`;
+	} else if (sellInput.total_price < stock[0].initial_cost) {
+		loseOrGain = `lose $${stock[0].initial_cost - sellInput.total_price}`;
 	}
+	
+	if (sellInput.quantity > stock[0].quantity) {
+		UIkit.modal.alert("You can't sell more stock than you own!");
+		return;
+	}
+	
+	UIkit.modal.confirm(
+		`Do you want to sell ${sellInput.quantity} ${pluralizeShare(sellInput.quantity)} of ${stock[0].stock_name}, and ${loseOrGain}?`
+	).then(async function() {
+		// check to see if quantity input is greater than, equal to, or less than the available quantity
+		if (sellInput.quantity === stock[0].quantity) {
+			// compare total value stored in database with new total value and display profit/loss
+			// delete stock from fund route
+		} else {
+			
+			// compare total value stored in database with new total value and display profit/loss
+			
+			// create object with new values to pass into stock table via put request
+			const sellRequest = {
+				quantity: stock[0].quantity - sellInput.quantity,
+				initial_cost: stock[0].initial_cost - sellInput.total_price
+			};
+	
+			// put new data in stock table by id
+			const response3 = await fetch(`/api/fund/${document.querySelector('#sell-stock-choice').value}`, {
+				method: 'put',
+				body: JSON.stringify(sellRequest),
+				headers: { 'Content-Type': 'application/json' },
+			});
+
+		}
+	}, function () {
+		console.log('Rejected.')
+	});
+	
+
 	
 };
 
