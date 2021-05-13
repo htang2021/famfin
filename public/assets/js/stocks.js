@@ -13,10 +13,10 @@ const lossOrGain = (newTotal, oldTotal, sellQuantity, quantity) => {
 	let output;
 	if (newTotal / sellQuantity > oldTotal / quantity) {
 		const gain = newTotal - (sellQuantity * (oldTotal / quantity));
-		output = `gain $${gain.toFixed(2)}`;
+		output = `gain <span class="index-up"><i class="fas fa-caret-up"></i> $${gain.toFixed(2)}</span>`;
 	} else if (newTotal / sellQuantity < oldTotal / quantity) {
 		const loss = (sellQuantity * (oldTotal / quantity)) - newTotal
-		output = `lose $${loss.toFixed(2)}`;
+		output = `lose <span class="index-down"><i class="fas fa-caret-down"></i> $${loss.toFixed(2)}</span>`;
 	}
 	return output;
 };
