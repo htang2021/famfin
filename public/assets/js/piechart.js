@@ -161,7 +161,7 @@ async function makeChart() {
 makeChart();
 
 function removeData(chart) {
-  chart.data.labels.pop();
+//   chart.data.labels.pop();
   chart.data.datasets.forEach((dataset) => {
     dataset.data.pop();
   });
