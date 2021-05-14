@@ -71,7 +71,7 @@
 	<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
 		<button class="uk-modal-close-default" type="button" uk-close></button>
-
+		
 		<form id="add-member-form">
 			<div class="uk-margin">
 				<label for="first-name">First Name</label>
@@ -100,42 +100,9 @@
 	</div>
 </div>
 
-<div id="edit-member-modal" class="uk-flex-top" uk-modal>
-	<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-
-		<button class="uk-modal-close-default" type="button" uk-close></button>
-
-		<table class="uk-table uk-table-divider">
-			<thead>
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Relationship</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#each dbMemberData as |member|}}
-				<tr id="{{member.dataValues.id}}">
-					<td>{{member.dataValues.first_name}}</td>
-					<td>{{member.dataValues.last_name}}</td>
-					<td>{{member.dataValues.relationship}}</td>
-					{{#unless member.dataValues.is_user}}
-					<td><a href="#" class="delete"><i class="fas fa-trash-alt"></i></a></td>
-					{{else}}
-					<td><i class="fas fa-lock"></i></td>
-					{{/unless}}
-				</tr>
-				{{/each}}
-			</tbody>
-		</table>
-
-	</div>
-</div>
-
-
 <!-- End Modals -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="./assets/js/piechart.js"></script>
+<!-- <script src="./assets/js/piechart.js"></script> -->
 <script src="./assets/js/members.js"></script>
 <script src="./assets/js/stocks.js"></script>
