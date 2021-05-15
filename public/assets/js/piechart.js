@@ -4,7 +4,7 @@ async function makeChart() {
   const stockPrices = {};
   const response = await fetch("/api/member/family");
   const membersData = await response.json();
-  console.log(membersData);
+//   console.log(membersData);
 
   // return array of {}s with labels and quantity keys
   const initialState = { labels: [], quantity: [] };
@@ -21,15 +21,15 @@ async function makeChart() {
 
   //   ticker is each individual ticker i.e. nflx
   for (const ticker of mannysTickers) {
-    console.log(ticker);
+    // console.log(ticker);
     const responseTick = await fetch(`/api/quote/${ticker}`);
     const resData = await responseTick.json();
     // resData =  {ticker: "nflx", quote: "495.08"}
-    console.log(resData);
+    // console.log(resData);
     // stockPrices array at each individual ticker = 495.08
     stockPrices[ticker] = resData.quote;
     // 125.91
-    console.log(stockPrices[ticker]);
+    // console.log(stockPrices[ticker]);
   }
 
   membersData.forEach((member) => {
@@ -68,64 +68,20 @@ async function makeChart() {
           fund.quantity
         } ${fund.stock_name.toUpperCase()} ${newValue}`
       );
-      console.log(fund);
+    //   console.log(fund);
 
       newValueArray.push(newValue);
       resultObject.quantity.push(fund.totalValue);
-      console.log(resultObject.quantity);
+    //   console.log(resultObject.quantity);
     });
     return resultObject;
   }
-  console.log(result.labels);
-  console.log(result.quantity);
-  console.log(newValueArray);
-  // get all keys from result obj
-  //   const tickers = Object.keys(result).filter((key) => {
-  //     return key !== "labels" && key !== "quantity";
-  //   });
-
-  //   async function tickerReducer(priceData, ticker) {
-  //     const promises = [];
-  //     try {
-  //       const tickerData = await fetch(`/api/quote/${ticker}`);
-  //       console.log(tickerData);
-  //       priceData[ticker] = tickerData;
-  //       promises.push(tickerData);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //     return priceData;
-  //   }
-
-  //   const moreData = await Promise.all(promises);
-  //   console.log(moreData);
-  // for (var i = 0; i < data.length; i++) {
-  //   for (var j = 0; j < data[i].funds.length; j++) {
-
-  //     //   for loop, loop through data[i], create total variable, store total
-  //     // let ticker = data[i].funds[j].stock_name;
-  //     // fetch(`/api/quote/${ticker}`)
-  //     //   .then((res) => res.json())
-  //     //   .then((moreData) => {
-  //     //     console.log(moreData);
-  //     //   });
-  //     quantity.push(data[i].funds[j].quantity);
-  //     // console.log(quantity);
-  //     //   }
-  //     //   if (userQuantity > 0) {
-  //     // quantity.push(userQuantity);
-  //     labels.push(
-  //       data[i].first_name +
-  //         " " +
-  //         data[i].last_name +
-  //         ": " +
-  //         data[i].funds[j].stock_name.toUpperCase()
-  //     );
-  //   }
-  // }
+//   console.log(result.labels);
+//   console.log(result.quantity);
+//   console.log(newValueArray);
 
   const element = document.getElementById("myChart");
-  console.log(result);
+//   console.log(result);
 
   const chartData = new Chart(element, {
     type: "pie",
@@ -154,18 +110,38 @@ async function makeChart() {
         },
       ],
     },
+    options: {
+      layout: {
+        padding: {
+          left: 150,
+        },
+      },
+      plugins: {
+        legend: {
+          position: "right",
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              // var label = context.dataset.label || '';
+              console.log(context);
+              return context.label;
+              // if (label) {
+              //     label += ': ';
+              // }
+              // if (context.parsed.y !== null) {
+              //     label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+              // }
+              // return label;
+            },
+          },
+        },
+      },
+    },
   });
   // var myChart = new Chart(document.getElementById("myChart"), config);
 }
 
 makeChart();
-
-function removeData(chart) {
-  chart.data.labels.pop();
-  chart.data.datasets.forEach((dataset) => {
-    dataset.data.pop();
-  });
-  chart.update();
-}
 
 document.querySelector("#buy-stock").addEventListener("submit", makeChart);

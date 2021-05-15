@@ -111,7 +111,7 @@ router.get('/test/:id', (req, res) => {
       });
 });
 // findone member
-router.post('/:id', withAuth, (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
   Member.findOne({
     where: {
       id: req.params.id
