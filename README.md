@@ -25,7 +25,8 @@ Code repository location is at the following link:
 https://github.com/htang2021/famfin
 
 ## Application Deployment
-
+Application is deployed to Heroku:  
+https://familyfinancials.herokuapp.com/
 
 ## Usage Instruction
 1. Go to https://
