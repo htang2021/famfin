@@ -101,7 +101,7 @@ router.get('/:id', withAuth, (req, res) => {
 
 //get an individual stock
 
-router.get('/stock/:id', (req, res) => {
+router.get('/stock/:id', withAuth, (req, res) => {
     Fund.findAll({
         where: {
             id: req.params.id
@@ -120,7 +120,7 @@ router.get('/stock/:id', (req, res) => {
         });
 });
 
-router.get('/ind/:id', (req, res) => {
+router.get('/ind/:id', withAuth, (req, res) => {
     Fund.findOne({
       where: {
         id: req.params.id
@@ -140,7 +140,7 @@ router.get('/ind/:id', (req, res) => {
   });
 
   // delete a stock 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', withAuth, (req, res) => {
     Fund.destroy({
       where: {
         id: req.params.id
