@@ -28,6 +28,8 @@ https://github.com/htang2021/famfin
 
 
 ## Usage Instruction
+1. Go to https://
+2. Create an user account
 
 
 ## Contributors
@@ -37,8 +39,11 @@ https://github.com/htang2021/famfin
 [Hung Tang](https://htang2021.github.io/htang-porfolio/)
 
 ## License & Credit
+[uikit from JSDeliver CDN](https://www.jsdelivr.com/package/npm/uikit)  
+[Font Awesome](https://fontawesome.com/)  
 [Alpha Vantage](https://www.alphavantage.co/)  
-[twelvedata](https://twelvedata.com/)
+[twelvedata](https://twelvedata.com/)  
+[ChartJS](https://www.chartjs.org/)
 
 
 End of README.  Last updated May 16, 2021
