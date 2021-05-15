@@ -21,7 +21,7 @@ As an user and a parent, I'd like to use an investment app that would allow me t
 ![](./public/assets/img/FamilyFinancials_HomePage.png)
 
 ## GitHub Repository
-Code repository location is at the following link:
+Code repository location is at the following link:  
 https://github.com/htang2021/famfin
 
 ## Application Deployment
@@ -37,7 +37,7 @@ https://github.com/htang2021/famfin
 [Hung Tang](https://htang2021.github.io/htang-porfolio/)
 
 ## License & Credit
-[Alpha Vantage](https://www.alphavantage.co/)
+[Alpha Vantage](https://www.alphavantage.co/)  
 [twelvedata](https://twelvedata.com/)
 
 
