@@ -111,14 +111,19 @@ async function makeChart() {
       ],
     },
     options: {
-      layout: {
-        padding: {
-          left: 150,
-        },
-      },
+    //   layout: {
+    //     padding: {
+    //       left: 200,
+    //     },
+    //   },
       plugins: {
         legend: {
-          position: "right",
+          position: "top",
+          labels: {
+            font: {
+              size: 18
+            }
+          }
         },
         tooltip: {
           callbacks: {
