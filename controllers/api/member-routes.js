@@ -88,7 +88,7 @@ router.get('/family', withAuth, (req, res) => {
 });
 
 // /api/member/test/1
-router.get('/test/:id', (req, res) => {
+router.get('/test/:id', withAuth, (req, res) => {
   Member.findAll({
       where: {
           user_id: req.params.id
