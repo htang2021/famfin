@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { Member, Fund } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // Delete a family member
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   // delete one member by its `id` value
   Member.destroy({
     where: {
@@ -22,7 +23,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   Member.create({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
@@ -37,7 +38,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Member.update(
     {
       first_name: req.body.first_name,
@@ -62,8 +63,9 @@ router.put('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
 // /api/member/family
-router.get('/family', (req, res) => {
+router.get('/family', withAuth, (req, res) => {
   Member.findAll({
     where: {
       user_id: req.session.user_id
@@ -109,7 +111,7 @@ router.get('/test/:id', (req, res) => {
       });
 });
 // findone member
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
   Member.findOne({
     where: {
       id: req.params.id
@@ -131,7 +133,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   Member.create({
     first_name: req.body.first_name,
     last_name: req.body.last_name,

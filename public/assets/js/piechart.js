@@ -1,13 +1,15 @@
+const newValueArray = [];
+
 async function makeChart() {
   const stockPrices = {};
   const response = await fetch("/api/member/family");
   const membersData = await response.json();
+//   console.log(membersData);
 
   // return array of {}s with labels and quantity keys
   const initialState = { labels: [], quantity: [] };
 
-
-  // Get all of the tickers per person
+  // Get all of the tickers per person ["nflx, "googl", "aapl", "msft"]
   const mannysTickers = [];
   membersData.forEach((member) => {
     member.funds.forEach((fund) => {
@@ -17,21 +19,32 @@ async function makeChart() {
     });
   });
 
+  //   ticker is each individual ticker i.e. nflx
   for (const ticker of mannysTickers) {
-    console.log(ticker);
+    // console.log(ticker);
     const responseTick = await fetch(`/api/quote/${ticker}`);
     const resData = await responseTick.json();
+    // resData =  {ticker: "nflx", quote: "495.08"}
+    // console.log(resData);
+    // stockPrices array at each individual ticker = 495.08
     stockPrices[ticker] = resData.quote;
+    // 125.91
+    // console.log(stockPrices[ticker]);
   }
 
   membersData.forEach((member) => {
+    //   loop through each
     member.funds.forEach((fund) => {
       fund.totalValue = stockPrices[fund.stock_name] * fund.quantity;
     });
   });
-//   console.log(stockPrices);
-//   console.log(membersData);
+  //   console.log(stockPrices);
+  //   console.log(membersData);
 
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
   // Query for each one of those tickers
   const result = membersData.reduce(reducer, initialState);
   // save the value of each ticker in an object
@@ -40,7 +53,7 @@ async function makeChart() {
   // and for each member loop their funds property
   // for each fund look at the price of the ticker and set a value called totalValue
   // by doing some math
-  // accumulator, current
+  // accumulator, currentValue
   function reducer(resultObject, member) {
     member.funds.forEach((fund) => {
       if (resultObject[fund.stock_name]) {
@@ -48,71 +61,28 @@ async function makeChart() {
       } else {
         resultObject[fund.stock_name] = fund.totalValue;
       }
+      const newValue = formatter.format(fund.totalValue);
+
       resultObject.labels.push(
-        `${member.first_name} ${
-          member.last_name
-        }: ${fund.stock_name.toUpperCase()}`
+        `${member.first_name} ${member.last_name}: ${
+          fund.quantity
+        } ${fund.stock_name.toUpperCase()} ${newValue}`
       );
-      console.log(fund);
+    //   console.log(fund);
+
+      newValueArray.push(newValue);
       resultObject.quantity.push(fund.totalValue);
+    //   console.log(resultObject.quantity);
     });
     return resultObject;
   }
-  console.log(result.labels);
-  console.log(result.quantity);
-
-  // get all keys from result obj
-  const tickers = Object.keys(result).filter((key) => {
-    return key !== "labels" && key !== "quantity";
-  });
-
-//   async function tickerReducer(priceData, ticker) {
-//     const promises = [];
-//     try {
-//       const tickerData = await fetch(`/api/quote/${ticker}`);
-//       console.log(tickerData);
-//       priceData[ticker] = tickerData;
-//       promises.push(tickerData);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//     return priceData;
-//   }
-
-  //   const moreData = await Promise.all(promises);
-  //   console.log(moreData);
-  // for (var i = 0; i < data.length; i++) {
-  //   for (var j = 0; j < data[i].funds.length; j++) {
-
-  //     //   for loop, loop through data[i], create total variable, store total
-  //     // let ticker = data[i].funds[j].stock_name;
-  //     // fetch(`/api/quote/${ticker}`)
-  //     //   .then((res) => res.json())
-  //     //   .then((moreData) => {
-  //     //     console.log(moreData);
-  //     //   });
-  //     quantity.push(data[i].funds[j].quantity);
-  //     // console.log(quantity);
-  //     //   }
-  //     //   if (userQuantity > 0) {
-  //     // quantity.push(userQuantity);
-  //     labels.push(
-  //       data[i].first_name +
-  //         " " +
-  //         data[i].last_name +
-  //         ": " +
-  //         data[i].funds[j].stock_name.toUpperCase()
-  //     );
-  //   }
-  // }
+//   console.log(result.labels);
+//   console.log(result.quantity);
+//   console.log(newValueArray);
 
   const element = document.getElementById("myChart");
-  // const config = {
-  //   type: "pie",
-  //   chartData,
-  //   options: {},
-  // };
-  console.log(result);
+//   console.log(result);
+
   const chartData = new Chart(element, {
     type: "pie",
     data: {
@@ -139,6 +109,34 @@ async function makeChart() {
           data: result.quantity,
         },
       ],
+    },
+    options: {
+      layout: {
+        padding: {
+          left: 150,
+        },
+      },
+      plugins: {
+        legend: {
+          position: "right",
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              // var label = context.dataset.label || '';
+              console.log(context);
+              return context.label;
+              // if (label) {
+              //     label += ': ';
+              // }
+              // if (context.parsed.y !== null) {
+              //     label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+              // }
+              // return label;
+            },
+          },
+        },
+      },
     },
   });
   // var myChart = new Chart(document.getElementById("myChart"), config);
