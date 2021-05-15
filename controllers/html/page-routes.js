@@ -7,7 +7,9 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 
 // homepage
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
+	
+	
 	// if session exists, redirect to dashboard
 	if (req.session.loggedIn) {
 		res.redirect("/dashboard");
@@ -19,7 +21,7 @@ router.get('/', async (req, res) => {
 	const ticker = 'DJI,IXIC,GSPC,RUT';
 	let url = `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=1day&apikey=${process.env.API_KEY2}`;
 
-	await fetch(url).then(data => {
+	fetch(url).then(data => {
 		if (data.ok) {
 			data.json().then(quote => {
 				// Calculate % increase or decrease between today and yesterday
@@ -54,7 +56,10 @@ router.get('/', async (req, res) => {
 });
 
 // dashboard
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", withAuth, (req, res) => {
+	
+	const pageTitle = 'Dashboard'
+
 	
 	// if no session exists, redirect to login
 	if (!req.session.loggedIn) {
@@ -78,7 +83,7 @@ router.get("/dashboard", (req, res) => {
 						return;
 				}
 				console.log(dbMemberData);
-				res.render("dashboard", { loggedIn, dbMemberData });
+				res.render("dashboard", { loggedIn, dbMemberData, pageTitle });
 		})
 		.catch(err => {
 				console.log(err);

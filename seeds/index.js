@@ -53,6 +53,18 @@ const fundData = [
 
 const memberData = [
     {
+        first_name: 'Steph',
+        last_name: 'Curry',
+        email: 'steph@warriors.com',
+        user_id: 1,
+    },
+    {
+        first_name: 'Klay',
+        last_name: 'Thompson',
+        email: 'klay@warriors.com',
+        user_id: 2,
+    },
+    {
         first_name: 'Clay',
         last_name: 'Coder',
         relationship: "best friend",
