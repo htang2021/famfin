@@ -33,13 +33,13 @@ https://github.com/htang2021/famfin
 
 
 ## Contributors
-[Graham Hall](https://ghall89.github.io/portfolio-page/) |
+[Graham Hall](https://ghall.dev/) |
 [Clayton Goff](https://clayto30.github.io/professional-portfolio/) |
 [Jennifer Nguyen](https://njthanhtrang.github.io/2.-Advanced-CSS-Challenge-Professional-Portfolio/#Contact) |
 [Hung Tang](https://htang2021.github.io/htang-porfolio/)
 
 ## License & Credit
-[uikit from JSDeliver CDN](https://www.jsdelivr.com/package/npm/uikit)  
+[UIkit](https://getuikit.com)  
 [Font Awesome](https://fontawesome.com/)  
 [Alpha Vantage](https://www.alphavantage.co/)  
 [twelvedata](https://twelvedata.com/)  
