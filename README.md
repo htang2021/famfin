@@ -37,7 +37,7 @@ https://familyfinancials.herokuapp.com/
 6. After the account is funded with stock purchases, a pie-chart is drawn that illustrates each of the members' holding(s) and the updated total amount of each holding, which may be more or less than the initial investment (gain or loss).
 7. The account user can sell the member's holding on his/her behalf, to the right of the page, SELL STOCK.
 8. To sell a stock, select the member from the members list and also the stock ticker that is to be sold and quantity, then click on SELL STOCK.  Pie chart will update accordingly.
-9. To logout, click on the ![](./public/assets/img/logoutIcon.png) to logout and will be brought to the landing page.
+9. To logout, click on the ![](./public/assets/img/logoutIcon.png) at the upper right hand corner to logout, and the user will be brought to the landing page.
 
 ## Contributors
 [Graham Hall](https://ghall.dev/) |
