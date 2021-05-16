@@ -1,7 +1,8 @@
+// create new member
 async function createMember(event) {
-	
 	event.preventDefault();
 	
+	// create member object
 	const createInput = {
 		first_name: document.querySelector('#create-first-name').value.trim(),
 		last_name: document.querySelector('#create-last-name').value.trim(),
@@ -9,8 +10,7 @@ async function createMember(event) {
 		is_user: false
 	};
 	
-	console.log(createInput);
-	
+	// pass member data to database
 	if (createInput.first_name && createInput.last_name) {
 		const response = await fetch('/api/member', {
 			method: 'post',
@@ -27,14 +27,4 @@ async function createMember(event) {
 	
 }
 
-async function deleteMember(event) {
-	// memberId = targetElement.closest('tr');
-	// console.log(memberId);
-	alert('You clicked the thing!');
-}
-
-
-
-
 document.querySelector('#add-member-form').addEventListener('submit', createMember);
-// document.getElementsByClassName('.delete').addEventListener('click', deleteMember);

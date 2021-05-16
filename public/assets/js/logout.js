@@ -1,5 +1,4 @@
-// const { response } = require("express");
-
+// logout user
 async function logout() {
     const response = await fetch("/api/users/logout", {
         method: "post",
@@ -11,5 +10,3 @@ async function logout() {
         alert(response.statusText);
     }
 }
-
-// document.querySelector("#logout").addEventListener("click", logout);
