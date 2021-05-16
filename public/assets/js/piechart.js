@@ -6,8 +6,9 @@ async function makeChart() {
   const membersData = await response.json();
 //   console.log(membersData);
 
-  // return array of {}s with labels and quantity keys
-  const initialState = { labels: [], quantity: [] };
+  let gain = '';
+  // return array of {}s with labels and quantity keys, and tooltip labels
+  const initialState = { labels: [], quantity: [], labelsTooltip: [] };
 
   // Get all of the tickers per person ["nflx, "googl", "aapl", "msft"]
   const mannysTickers = [];
@@ -63,12 +64,26 @@ async function makeChart() {
       }
       const newValue = formatter.format(fund.totalValue);
 
+      gainOrLoss = Math.round((fund.totalValue - fund.initial_cost)/fund.initial_cost*100*100)/100;
+      if (gainOrLoss > 0) {  
+        gain = "Gain";
+      } else if (gainOrLoss == 0) {
+        gain = " Gain/Loss";
+      } else {
+        gain = "Loss";
+      }
+
       resultObject.labels.push(
         `${member.first_name} ${member.last_name}: ${
           fund.quantity
         } ${fund.stock_name.toUpperCase()} ${newValue}`
       );
     //   console.log(fund);
+
+      // Create an array of gain/loss result
+      resultObject.labelsTooltip.push(
+        `${gain} of ${gainOrLoss}%`
+      );
 
       newValueArray.push(newValue);
       resultObject.quantity.push(fund.totalValue);

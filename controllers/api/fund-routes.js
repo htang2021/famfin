@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { Fund } = require('../../models');
 const withAuth = require("../../utils/auth");
 
+// find if the stock exists and update, else create a new db entry
+
 router.post('/', withAuth, (req, res) => {
     Fund.findAll({
         where: {
@@ -50,10 +52,7 @@ router.post('/', withAuth, (req, res) => {
         })
 });
 
-// show all and or show one by initial cost 
-// find one on stock id initial cost
-// in front end js, get the new cost of this stock find one + cost of new stock 
-// req.body.initial_cost = previous line
+// buy more of a previously bought stock
 
 router.put('/:id', withAuth, (req, res) => {
     Fund.update(
@@ -80,6 +79,8 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
+// get all stocks by user with request in body
+
 router.get('/:id', withAuth, (req, res) => {
     Fund.findAll({
         where: {
@@ -99,7 +100,7 @@ router.get('/:id', withAuth, (req, res) => {
         });
 });
 
-//get an individual stock
+//get stocks alternative with id in url (not body)
 
 router.get('/stock/:id', withAuth, (req, res) => {
     Fund.findAll({
@@ -119,6 +120,8 @@ router.get('/stock/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
+
+// get single stock 
 
 router.get('/ind/:id', withAuth, (req, res) => {
     Fund.findOne({
