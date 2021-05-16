@@ -3,12 +3,6 @@ const fetch = require('node-fetch');
 
 require('dotenv').config();
 
-// converts number to $xxx.yy format in string type (not used - to be removed once finalized)
-// const formatter = new Intl.NumberFormat('en-US', {
-//     style: 'currency',
-//     currency: 'USD',
-//   });
-
 // async function tickerPrice(ticker) {
 
 router.get('/:ticker', async (req, res) => {
@@ -24,14 +18,21 @@ router.get('/:ticker', async (req, res) => {
     await fetch(url).then(function(response) {
         if (response.ok) {
             response.json().then(function(quote) {
-                // returns the quote in xx.yy format (with 2 deciaml pts)
+                // If response does not return a "Note" object - which is a "hit-the-limit" object
                 if (!quote["Note"]) {
+                    // returns the quote in xx.yy format (with 2 deciaml pts)
                     let priceQuote = quote["Global Quote"]["05. price"]*100/100;
                     // Setting price quote to the quote property of quoteRes object
                     quoteRes.quote = priceQuote;
                     res.json(quoteRes);
+                // If response returned an object with "Note" property, it's a "hit-the-limit" object
                 } else {
-                    alert("You have hit the query limit!");
+                    // console logging to the backend console where npm start is initiated
+                    console.log(" ");
+                    console.log("************************************************************");
+                    console.log("********  You have hit the 5 queries/minute limit!  ********");
+                    console.log("****** Please wait for a minute before trying again. *******");
+                    console.log("************************************************************");
                     return;
                 }
             });
