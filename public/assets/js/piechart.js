@@ -76,9 +76,6 @@ async function makeChart() {
     });
     return resultObject;
   }
-//   console.log(result.labels);
-//   console.log(result.quantity);
-//   console.log(newValueArray);
 
   const element = document.getElementById("myChart");
 //   console.log(result);
@@ -111,14 +108,14 @@ async function makeChart() {
       ],
     },
     options: {
-      layout: {
-        padding: {
-          left: 150,
-        },
-      },
       plugins: {
         legend: {
-          position: "right",
+          position: "top",
+          labels: {
+            font: {
+              size: 18
+            }
+          }
         },
         tooltip: {
           callbacks: {
@@ -126,20 +123,12 @@ async function makeChart() {
               // var label = context.dataset.label || '';
               console.log(context);
               return context.label;
-              // if (label) {
-              //     label += ': ';
-              // }
-              // if (context.parsed.y !== null) {
-              //     label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
-              // }
-              // return label;
             },
           },
         },
       },
     },
   });
-  // var myChart = new Chart(document.getElementById("myChart"), config);
 }
 
 makeChart();
