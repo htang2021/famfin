@@ -17,7 +17,7 @@
 <body>
 	<nav class="uk-navbar-container" uk-navbar style="background-color: #191919;" >
 
-		<div class="uk-navbar-left">
+		<div class="uk-navbar-left uk-margin-left">
 			
 			<h1 class="uk-margin-left"><i class="fas fa-coins"></i> Family Financial</h1>
 
@@ -25,15 +25,19 @@
 
 		<!-- Only display this section when user is logged in -->
 
-		<div class="uk-navbar-right">
+		<div class="uk-navbar-right uk-margin-right">
 
 				<ul class="uk-navbar-nav">
 						{{#if loggedIn}}
 						<li>
-							<a href="#new-member-modal" uk-toggle><i class="fas fa-user-plus uk-text-large"></i></a>
+							<a href="#new-member-modal" uk-tooltip="Add Member" uk-toggle>
+								<i class="fas fa-user-plus uk-text-large"></i>
+							</a>
 						</li>
 						<li>
-							<a href="#" onclick="logout()"><i class="fas fa-sign-out-alt uk-text-large"></i></a>
+							<a href="#" onclick="logout()" uk-tooltip="Logout">
+								<i class="fas fa-sign-out-alt uk-text-large"></i>
+							</a>
 						</li>
 						{{/if}}
 				</ul>
