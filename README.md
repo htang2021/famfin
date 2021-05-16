@@ -29,9 +29,15 @@ Application is deployed to Heroku:
 https://familyfinancials.herokuapp.com/
 
 ## Usage Instruction
-1. Go to https://
-2. Create an user account
-
+1. Go to the landing page at https://familyfinancials.herokuapp.com.
+2. For new user, click on + SIGN UP to create an account.
+3. Fill out all of user information on the pop-up form and create account.
+4. As an account owner, family members can then be added by clicking on the ![](./public/assets/img/memberAddIcon.png) at the upper right hand corner of the page, then fill out the form and click + ADD MEMBER to add.
+5. Once all members are added to the account, each member can purchase shares of stocks or funds by entering the ticker and quantity on the BUY STOCK side of the page.
+6. After the account is funded with stock purchases, a pie-chart is drawn that illustrates each of the members' holding(s) and the updated total amount of each holding, which may be more or less than the initial investment (gain or loss).
+7. The account user can sell the member's holding on his/her behalf, to the right of the page, SELL STOCK.
+8. To sell a stock, select the member from the members list and also the stock ticker that is to be sold and quantity, then click on SELL STOCK.  Pie chart will update accordingly.
+9. To logout, click on the ![](./public/assets/img/logoutIcon.png) to logout and will be brought to the landing page.
 
 ## Contributors
 [Graham Hall](https://ghall.dev/) |
