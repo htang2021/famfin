@@ -1,8 +1,8 @@
-
 <div class="uk-container uk-padding">
 	
 	<div class="uk-grid-divider" uk-grid>
 		
+		<!-- Buy Stock Form -->
 		<div class="uk-width-1-2@m">
 			<form id="buy-stock" class="uk-grid-small" uk-grid>
 				<div class="uk-width-1-4@s">
@@ -27,6 +27,7 @@
 			</form>
 		</div>
 		
+		<!-- Sell Stock Form -->
 		<div class="uk-width-1-2@m">
 			<form id="sell-stock" class="uk-grid-small" uk-grid>
 				<div class="uk-width-1-2@s">
@@ -41,9 +42,7 @@
 				</div>
 				<div class="uk-width-1-4@s">
 					<label for="sell-stock-choice">Stock</label>
-					<select id="sell-stock-choice" class="uk-select">
-	
-					</select>
+					<select id="sell-stock-choice" class="uk-select"></select>
 				</div>
 				<div class="uk-width-1-4@s">
 					<label for="sell-quantity">Quantity</label>
@@ -54,19 +53,15 @@
 				</div>
 			</form>
 		</div>
-		
-		
 	</div>
-
-
 </div>
 
+<!-- Charts -->
 <div class="chart-container" style="position: relative; height:40vh; width:60vw">
     <canvas id="myChart"></canvas>
 </div>
 
-<!-- Start Modals -->
-
+<!-- Add Member Modal -->
 <div id="new-member-modal" class="uk-flex-top" uk-modal>
 	<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
@@ -100,8 +95,7 @@
 	</div>
 </div>
 
-<!-- End Modals -->
-
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./assets/js/piechart.js"></script>
 <script src="./assets/js/members.js"></script>

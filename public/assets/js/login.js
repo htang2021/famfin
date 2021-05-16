@@ -1,3 +1,4 @@
+// login function
 async function loginHandler(event) {
 	event.preventDefault();
 	
@@ -22,9 +23,11 @@ async function loginHandler(event) {
 	}
 }
 
+// user signup
 async function signupHandler(event) {
 	event.preventDefault();
 	
+	// create user object
 	const signupInput = {
 		first_name: document.querySelector("#first-name").value.trim(),
 		last_name: document.querySelector("#last-name").value.trim(),
@@ -32,6 +35,7 @@ async function signupHandler(event) {
 		password: document.querySelector("#signup-password").value
 	};
 	
+	// create member object for main user
 	const signupMember = {
 		first_name: document.querySelector("#first-name").value.trim(),
 		last_name: document.querySelector("#last-name").value.trim(),
@@ -39,9 +43,7 @@ async function signupHandler(event) {
 		relationship: 'Self'
 	};
 	
-	console.log(signupInput);
-	console.log(signupMember);
-	
+	// pass user and member objects to database
 	if (signupInput.first_name && signupInput.last_name && signupInput.email && signupInput.password) {
 		const response = await fetch('/api/users', {
 			method: 'post',

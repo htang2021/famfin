@@ -26,7 +26,7 @@
 
 .intro {
 	transform: translateY(-190px);
-	position: absolute;
+	/* position: absolute; */
 	z-index: 3;
 }
 
@@ -63,7 +63,7 @@
 
 /* End Major Indices Styles */
 
-/* Pie chart styles */
+/* Start Pie Chart Styles */
 .piechart {
 	height: 700px;
 	width: 700px;
@@ -72,6 +72,8 @@
 .chart-container {
 	margin: auto;
 }
+/* End Pie Chart Styles */
+
 /* Start Dashboard Styles */
 
 .delete {
@@ -81,14 +83,14 @@
 .delete:hover {
 	color: #ff0000;
 }
+/* End Dashboard Styles */
 
 /* Start Footer Styles */
 
 footer {
-	margin: 50px;
-	position: fixed;
+	transform: translateY(-130px);
 	left: 0;
-	bottom: 0;
+	margin-bottom: 30px;
 	width: 100%;
 	text-align: center;
 }
