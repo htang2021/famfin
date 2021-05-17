@@ -77,13 +77,13 @@ async function makeChart() {
 
       newValueArray.push(newValue);
       resultObject.quantity.push(fund.totalValue);
-
-      let fundCreatedAt = fund.createdAt.substr(0, 10);
+      console.log(resultObject.quantity);
+      let convertedDate = moment(fund.createdAt);
 
       resultObject.labels.push(
         `${member.first_name} ${member.last_name}: ${
           fund.quantity
-        } ${fund.stock_name.toUpperCase()} ${newValue}` + ` ${gain} of ${gainOrLoss}% since ${fundCreatedAt}`
+        } ${fund.stock_name.toUpperCase()} ${newValue}` + `${gain} of ${gainOrLoss}% since ${convertedDate.format("MMM Do, YYYY h:mm A")}`
       );
     });
     return resultObject;
