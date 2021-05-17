@@ -1,24 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
-// const Test = sequelize.define("test", {
-//   // attributes
-//   name: {
-//     type: DataType.STRING,
-//     allowNull: false,
-//   },
-//   createdAt: {
-//     type: DataType.DATE,
-//     //note here this is the guy that you are looking for
-//     get() {
-//       return moment(this.getDataValue("createdAt")).format(
-//         "DD/MM/YYYY h:mm:ss"
-//       );
-//     },
-//   },
-// });
 
 class Member extends Model {}
 
+// Member Model Definition
 Member.init(
   {
     id: {
@@ -50,7 +35,7 @@ Member.init(
         model: "user",
         key: "id",
       },
-    },
+    }
   },
   {
     sequelize,
