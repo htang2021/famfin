@@ -75,7 +75,7 @@ router.get('/family', withAuth, (req, res) => {
       user_id: req.session.user_id
     },
     include: {
-      model: Fund
+      model: Fund,
     },
   })
     .then(dbMemberData => {
