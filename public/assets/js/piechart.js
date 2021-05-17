@@ -90,7 +90,7 @@ async function makeChart() {
       resultObject.labels.push(
         `${member.first_name} ${member.last_name}: ${
           fund.quantity
-        } ${fund.stock_name.toUpperCase()} ${newValue}` + `${gain} of ${gainOrLoss}% since ${convertedDate.format("MMM Do YYYY, h:mmA")}`
+        } ${fund.stock_name.toUpperCase()} ${newValue}` + `${gain} of ${gainOrLoss}% since ${convertedDate.format("MMM Do, YYYY h:mm A")}`
       );
     });
     return resultObject;
