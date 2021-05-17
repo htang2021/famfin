@@ -76,7 +76,7 @@ router.get('/family', withAuth, (req, res) => {
     },
     include: {
       model: Fund
-    }
+    },
   })
     .then(dbMemberData => {
       if (!dbMemberData) {
