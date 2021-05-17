@@ -3,6 +3,7 @@ const sequelize = require("../config/connection");
 
 class Member extends Model {}
 
+// Member Model Definition
 Member.init(
   {
     id: {
@@ -34,7 +35,7 @@ Member.init(
         model: "user",
         key: "id",
       },
-    },
+    }
   },
   {
     sequelize,

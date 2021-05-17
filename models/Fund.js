@@ -3,6 +3,7 @@ const sequelize = require("../config/connection");
 
 class Fund extends Model {}
 
+// Fund Model Definition
 Fund.init(
   {
     id: {
@@ -29,7 +30,11 @@ Fund.init(
     initial_cost: {
       type: DataTypes.DECIMAL(20, 2),
       allowNull: true,
+<<<<<<< HEAD
     },
+=======
+    }
+>>>>>>> fdd5d5e455af8282b0e50e6a5c794765870bd051
   },
   {
     sequelize,
