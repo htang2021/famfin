@@ -39,6 +39,10 @@ https://familyfinancials.herokuapp.com/
 8. To sell a stock, select the member from the members list and also the stock ticker that is to be sold and quantity, then click on SELL STOCK.  Pie chart will update accordingly.
 9. To logout, click on the ![](./public/assets/img/logoutIcon.png) at the upper right hand corner to logout, and the user will be brought to the landing page.
 
+## Known Limitation
+- Free version of the Alpha Vantage quote services has a 5 queries/minute and 500 queries/day limit.  User Experience will suffer unless this is upgraded to a paid service.
+- Free version of the twelvedata quote services has a 8 queries/minute and 800 queries/day limit.  User Experience will suffer unless this is upgraded to a paid service.
+
 ## Contributors
 [Graham Hall](https://ghall.dev/) |
 [Clayton Goff](https://clayto30.github.io/professional-portfolio/) |

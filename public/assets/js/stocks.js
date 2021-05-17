@@ -1,3 +1,4 @@
+// return "share" or "shares" based on integer
 const pluralizeShare = quantity => {
 	let output;
 	if (quantity > 1) {
@@ -30,21 +31,22 @@ const buyStock = async (event) => {
 		`/api/quote/${document.querySelector('#stock').value.trim()}`
 	);
 	const initialCost = await response.json();
-
+	
+	// check stock exists (assumes a value of 'undefined' means stock does not exist)
 	if (!initialCost.quote) {
 		UIkit.modal.alert(
 			`No stock found with the ticker ${document.querySelector('#stock').value.trim().toUpperCase()}. Try again!`
 		);
 		return;
 	}
-
+	// construct query object
 	const buyInput = {
 		stock_name: document.querySelector('#stock').value.trim().toUpperCase(),
 		quantity: parseInt(document.querySelector('#quantity').value),
 		initial_cost: initialCost.quote * document.querySelector('#quantity').value,
 		member_id: document.querySelector('#member-choice').value,
 	};
-	
+	// confirm and push stock object to database
 	UIkit.modal.confirm(
 		`Do you really want to purchase ${buyInput.quantity} ${pluralizeShare(buyInput.quantity)} of ${buyInput.stock_name} at $${buyInput.initial_cost}?`
 	)
@@ -65,7 +67,6 @@ const buyStock = async (event) => {
 	}, function() {
 		console.log('Rejected');
 	});
-
 	
 };
 
@@ -125,9 +126,6 @@ const sellStock = async (event) => {
 	}, function () {
 		console.log('Rejected.')
 	});
-	
-
-	
 };
 
 // populate stock dropdown for sell form
@@ -148,6 +146,5 @@ const getMemberStocks = async () => {
 
 getMemberStocks();
 
-// Event Listeners
 document.querySelector('#buy-stock').addEventListener('submit', buyStock);
 document.querySelector('#sell-stock').addEventListener('submit', sellStock);
