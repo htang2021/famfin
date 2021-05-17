@@ -17,7 +17,9 @@ async function loginHandler(event) {
 		if (response.ok) {
 			document.location.replace('/dashboard');
 		} else {
-			alert(response.statusText);
+			const {message} = await response.json();
+			console.log(message);
+			UIkit.modal.alert(message);
 		}
 	}
 }

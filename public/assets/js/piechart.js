@@ -1,12 +1,13 @@
 const newValueArray = [];
+const gainsArray = [];
 
 async function makeChart() {
   const stockPrices = {};
   const response = await fetch("/api/member/family");
   const membersData = await response.json();
-//   console.log(membersData);
+  console.log(membersData);
 
-  let gain = '';
+  let gain = "";
   // return array of {}s with labels and quantity keys, and tooltip labels
   const initialState = { labels: [], quantity: [], labelsTooltip: [] };
 
@@ -29,7 +30,6 @@ async function makeChart() {
     // console.log(resData);
     // stockPrices array at each individual ticker = 495.08
     stockPrices[ticker] = resData.quote;
-    // 125.91
     // console.log(stockPrices[ticker]);
   }
 
@@ -46,14 +46,14 @@ async function makeChart() {
     style: "currency",
     currency: "USD",
   });
+
   // Query for each one of those tickers
   const result = membersData.reduce(reducer, initialState);
-  // save the value of each ticker in an object
+  console.log(result);
 
-  // loop through each members
-  // and for each member loop their funds property
+  // save the value of each ticker in an object
+  // loop through each members, for each member loop their funds property
   // for each fund look at the price of the ticker and set a value called totalValue
-  // by doing some math
   // accumulator, currentValue
   function reducer(resultObject, member) {
     member.funds.forEach((fund) => {
@@ -64,8 +64,13 @@ async function makeChart() {
       }
       const newValue = formatter.format(fund.totalValue);
 
-      gainOrLoss = Math.round((fund.totalValue - fund.initial_cost)/fund.initial_cost*100*100)/100;
-      if (gainOrLoss > 0) {  
+      gainOrLoss =
+        Math.round(
+          ((fund.totalValue - fund.initial_cost) / fund.initial_cost) *
+            100 *
+            100
+        ) / 100;
+      if (gainOrLoss > 0) {
         gain = "Gain";
       } else if (gainOrLoss == 0) {
         gain = " Gain/Loss";
@@ -73,27 +78,25 @@ async function makeChart() {
         gain = "Loss";
       }
 
+      // Create an array of gain/loss result
+      resultObject.labelsTooltip.push(`${gain} of ${gainOrLoss}%`);
+
+      console.log(resultObject);
+      newValueArray.push(newValue);
+      resultObject.quantity.push(fund.totalValue);
+      console.log(resultObject.quantity);
+
       resultObject.labels.push(
         `${member.first_name} ${member.last_name}: ${
           fund.quantity
-        } ${fund.stock_name.toUpperCase()} ${newValue}`
+        } ${fund.stock_name.toUpperCase()} ${newValue}` + `${gain} of ${gainOrLoss}% since ${fund.createdAt}`
       );
-    //   console.log(fund);
-
-      // Create an array of gain/loss result
-      resultObject.labelsTooltip.push(
-        `${gain} of ${gainOrLoss}%`
-      );
-
-      newValueArray.push(newValue);
-      resultObject.quantity.push(fund.totalValue);
-    //   console.log(resultObject.quantity);
     });
     return resultObject;
-  }
+  };
 
   const element = document.getElementById("myChart");
-//   console.log(result);
+  console.log(result);
 
   const chartData = new Chart(element, {
     type: "pie",
@@ -128,14 +131,13 @@ async function makeChart() {
           position: "top",
           labels: {
             font: {
-              size: 18
-            }
-          }
+              size: 18,
+            },
+          },
         },
         tooltip: {
           callbacks: {
             label: function (context) {
-              // var label = context.dataset.label || '';
               console.log(context);
               return context.label;
             },
