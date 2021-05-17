@@ -3,6 +3,7 @@ const sequelize = require("../config/connection");
 
 class Fund extends Model {}
 
+// Fund Model Definition
 Fund.init(
   {
     id: {
@@ -29,16 +30,7 @@ Fund.init(
     initial_cost: {
       type: DataTypes.DECIMAL(20, 2),
       allowNull: true,
-    },
-    // createdAt: {
-    //   type: DataTypes.DATE,
-    //   //note here this is the guy that you are looking for
-    //   get() {
-    //     return moment(this.getDataValue("createdAt")).format(
-    //       "DD/MM/YYYY h:mm:ss"
-    //     );
-    //   },
-    // },
+    }
   },
   {
     sequelize,
